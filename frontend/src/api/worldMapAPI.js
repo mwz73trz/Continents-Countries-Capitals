@@ -35,9 +35,15 @@ const getContinentById = async (continentId) => {
   return await tryCatchFetch(url, getInit());
 };
 
+const getCountryById = async (countryId) => {
+  let url = `${BASE_URL}api/countries/${countryId}/`;
+  return await tryCatchFetch(url, getInit());
+};
+
 const myExports = {
   getContinents,
   getContinentById,
+  getCountryById,
 };
 
 export default myExports;

@@ -1,5 +1,6 @@
 import { Component } from "react";
 import worldMapAPI from "../api/worldMapAPI";
+import { Link } from "react-router-dom";
 
 class CountriesPage extends Component {
   state = {
@@ -10,7 +11,6 @@ class CountriesPage extends Component {
     try {
       let continentId = this.props.match.params.continentId;
       let continentData = await worldMapAPI.getContinentById(continentId);
-      console.log(continentData);
       this.setState({ continent: continentData });
     } catch (error) {}
   };
@@ -22,7 +22,13 @@ class CountriesPage extends Component {
   renderCountries() {
     let countryElements = this.state.continent.countries.map(
       (country, index) => {
-        return <li key={`country-${index}`}>{country.name}</li>;
+        return (
+          <li key={`country-${index}`}>
+            <Link to={`/countries/${country.id}/capitals/`}>
+              {country.name}
+            </Link>
+          </li>
+        );
       }
     );
     return (
