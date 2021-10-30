@@ -1,8 +1,15 @@
 import { Component } from "react";
+import { Link } from "react-router-dom";
 
 class Continents extends Component {
   render() {
-    return <span>{this.props.continent.name}</span>;
+    return (
+      <span>
+        <Link to={`/continents/${this.props.continent.id}`}>
+          {this.props.continent.name}
+        </Link>
+      </span>
+    );
   }
 }
 
