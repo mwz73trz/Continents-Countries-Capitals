@@ -40,10 +40,19 @@ const getCountryById = async (countryId) => {
   return await tryCatchFetch(url, getInit());
 };
 
+const createCountry = async (newCountryParams) => {
+  let url = `${BASE_URL}api/countries/`;
+  let init = getInit();
+  init["method"] = "POST";
+  init["body"] = JSON.stringify(newCountryParams);
+  return await tryCatchFetch(url, init);
+};
+
 const myExports = {
   getContinents,
   getContinentById,
   getCountryById,
+  createCountry,
 };
 
 export default myExports;

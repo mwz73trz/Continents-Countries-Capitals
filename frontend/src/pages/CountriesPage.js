@@ -12,7 +12,29 @@ class CountriesPage extends Component {
       let continentId = this.props.match.params.continentId;
       let continentData = await worldMapAPI.getContinentById(continentId);
       this.setState({ continent: continentData });
-    } catch (error) {}
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  createCountry = async () => {
+    try {
+      let input = document.getElementById("new-country-name");
+      if (input) {
+        let newCountryParams = {
+          continent: this.state.continent.id,
+          name: input.value,
+          been: false,
+        };
+        console.log(newCountryParams);
+        let data = await worldMapAPI.createCountry(newCountryParams);
+        if (data) {
+          this.getContinent();
+        }
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   componentDidMount() {
@@ -32,9 +54,14 @@ class CountriesPage extends Component {
       }
     );
     return (
-      <ul type="simple-list" style={{ listStyle: "none" }}>
-        {countryElements}
-      </ul>
+      <div>
+        <ul type="simple-list" style={{ listStyle: "none" }}>
+          {countryElements}
+        </ul>
+        <hr />
+        <input id="new-country-name" placeholder="country name" />
+        <button onClick={this.createCountry}>Add New Country</button>
+      </div>
     );
   }
 

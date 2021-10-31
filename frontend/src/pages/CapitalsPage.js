@@ -10,7 +10,6 @@ class CapitalsPage extends Component {
     try {
       let countryId = this.props.match.params.countryId;
       let countryData = await worldMapAPI.getCountryById(countryId);
-      console.log(countryData);
       this.setState({ country: countryData });
     } catch (error) {
       console.log(error);

@@ -7,7 +7,7 @@ class ContinentViewSet(ModelViewSet):
     queryset = Continent.objects.all()
     serializer_class = ContinentSerializer
 
-class CoutryViewSet(ModelViewSet):
+class CountryViewSet(ModelViewSet):
     queryset = Country.objects.all()
     serializer_class = CountrySerializer
 
